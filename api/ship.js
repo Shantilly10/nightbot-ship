@@ -8,7 +8,7 @@ export default function handler(req,res){
     90:["Match perfecto. Se sienten el uno al otro.","Casi lo máximo. Amor puro y bello."],
     80:["Huele a amor cuando están juntos.","Sí, hay potencial.","buen match, mejor que los de tinder"],
     60:["Podría funcionar con esfuerzo.","Hay química, pero falta algo.","Casi, pero no.","Sus amores verdaderos todavía estan esperandolos..."],
-    40:["Puede que funcione... si el universo se alinea.","Hay una muy mínima chance.","mmm... Aquí no hay mucho futuro."],
+    40:["Puede que funcione... si el universo se alinea.","Hay un chance para intentarlo.","mmm... tal ves?."],
     20:["No hay futuro aquí.","Eso es un NO rotundo.","hay más match entre el aceite y el agua, que en ustedes.","Peor match no puede haber","mejor amigos nada más, que disgusting..."]
   };
   let c;
@@ -25,6 +25,6 @@ export default function handler(req,res){
     name=" | Nombre: "+(x.slice(0,Math.ceil(x.length/2))+y.slice(Math.floor(y.length/2)));
     name=name.charAt(0).toUpperCase()+name.slice(1);
   }
-  const msg=`Compatibilidad entre ${a} y ${b}: ${p}%. ${c[Math.floor(Math.random()*c.length)]}${name}`;
+  const msg=`Compatibilidad entre ${a} y ${b} es de ${p}%. ${c[Math.floor(Math.random()*c.length)]}${name}`;
   res.status(200).send(msg);
 }
