@@ -25,6 +25,6 @@ export default function handler(req,res){
     name=" | Nombre: "+(x.slice(0,Math.ceil(x.length/2))+y.slice(Math.floor(y.length/2)));
     name=name.charAt(0).toUpperCase()+name.slice(1);
   }
-  const msg=`Compatibilidad entre ${a} y ${b} es de ${p}%. ${c[Math.floor(Math.random()*c.length)]}${name}`;
+  const msg=`El shippeo entre ${a} y ${b} es de ${p}%. ${c[Math.floor(Math.random()*c.length)]}${name}`;
   res.status(200).send(msg);
 }
