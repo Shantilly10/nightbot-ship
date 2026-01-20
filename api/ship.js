@@ -2,16 +2,18 @@ export default function handler(req,res){
   const query = (req.query.query || "").trim();
   const args = query.split(" ").filter(Boolean);
 
-  const a = args[0] || "";
-  const b = args[1] || "";
+  const clean = (s) => s.replace(/^@/, "");
 
-  // Mensaje si no hay 2 usuarios
+  const a = clean(args[0] || "");
+  const b = clean(args[1] || "");
+
   if(!a || !b){
-    return res.status(200).send("Debes escribir 2 usuarios. Ejemplo: !ship usuario1 usuario2");
+    return res.status(200).send("Debes escribir 2 usuarios. Ejemplo: !ship @usuario1 @usuario2");
   }
 
-  const p=Math.floor(Math.random()*101);
-  const frases={
+  const p = Math.floor(Math.random() * 101);
+
+  const frases = {
     100:["Mejor shippeo no puede haber.","Esto es amor verdadero.","Fueron hecho el uno para el otro."],
     90:["Match perfecto. Se sienten el uno al otro.","Casi lo máximo. Amor puro y bello."],
     80:["Huele a amor cuando están juntos.","Sí, hay potencial.","buen match, mejor que los de tinder"],
