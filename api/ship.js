@@ -5,17 +5,14 @@ export default function handler(req, res) {
   const clean = (s) => s.replace(/^@/, "");
 
   const from = clean(fromRaw);
-  const target =
-    !targetRaw || targetRaw.toLowerCase() === from.toLowerCase()
-      ? ""
-      : clean(targetRaw);
+  const target = clean(targetRaw);
 
   res.setHeader("Content-Type", "text/plain; charset=utf-8");
 
   // Si no hay target válido
   if (!target) {
     return res.send(
-      "Debes escribir 2 usuarios. Ejemplo: !ship @usuario1 @usuario2"
+      "Debes escribir 1 usuario. Ejemplo: !ship @usuario"
     );
   }
 
