@@ -1,7 +1,15 @@
 export default function handler(req,res){
-  const a=(req.query.a||"").trim();
-  const b=(req.query.b||"").trim();
-  if(!a||!b)return res.status(200).send("Usa: !ship Nombre1 Nombre2");
+  const query = (req.query.query || "").trim();
+  const args = query.split(" ").filter(Boolean);
+
+  const a = args[0] || "";
+  const b = args[1] || "";
+
+  // Mensaje si no hay 2 usuarios
+  if(!a || !b){
+    return res.status(200).send("Debes escribir 2 usuarios. Ejemplo: !ship usuario1 usuario2");
+  }
+
   const p=Math.floor(Math.random()*101);
   const frases={
     100:["Mejor shippeo no puede haber.","Esto es amor verdadero.","Fueron hecho el uno para el otro."],
@@ -11,6 +19,7 @@ export default function handler(req,res){
     40:["Puede que funcione... si el universo se alinea.","Hay un chance para intentarlo.","mmm... tal ves?."],
     20:["No hay futuro aquí.","Eso es un NO rotundo.","hay más match entre el aceite y el agua, que en ustedes.","Peor match no puede haber","mejor amigos nada más, que disgusting..."]
   };
+
   let c;
   if(p==100)c=frases[100];
   else if(p>=90)c=frases[90];
@@ -25,6 +34,7 @@ export default function handler(req,res){
     name=" | Nombre: "+(x.slice(0,Math.ceil(x.length/2))+y.slice(Math.floor(y.length/2)));
     name=name.charAt(0).toUpperCase()+name.slice(1);
   }
+
   const msg=`El shippeo entre ${a} y ${b} es de ${p}%. ${c[Math.floor(Math.random()*c.length)]}${name}`;
   res.status(200).send(msg);
 }
